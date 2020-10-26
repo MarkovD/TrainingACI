@@ -50,8 +50,6 @@ Expand and explore the subfolders of the newly created Application Profile. Clic
 
 ![ap_epgs](images/ap_epgs.png)
 
-### ACI EndPoint Groups
-
 ## Conclusion
 
 In this lab you created an Application Profile under your Tenant on the Cisco APIC. Furthermore, two EPGs have been included into it. Notice that each of the EPGs has been associated with a Bridge Domain: in this way the "_application side_" and the "_networking side_" have been linked in a way. In the [next lab](../LAB4/LAB04_instructions.md) you will configure a **contract** between the two EPGs so that they can communicate across the the ACI fabric.
