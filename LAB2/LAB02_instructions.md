@@ -77,6 +77,6 @@ Now you should be able to see the newly created objects, respectively under the 
 
 ## Conclusions
 
-In this lab you created a tenant on the Cisco APIC and configured part of its "_networking side_", i.e. a VRF and a Bridge Domain. In the [next lab](../LAB3/LAB03_instructions.md) you will configure the "_application profile_" of your tenant.
+In this lab you created a tenant on the Cisco APIC and configured part of its "_networking side_", i.e. a VRF and a Bridge Domain. In the [next lab](../LAB3/LAB03_instructions.md) you will configure the **Application Profile** of your tenant.
 
 > :heavy_check_mark: Congratulations! You have successfully completed this lab!

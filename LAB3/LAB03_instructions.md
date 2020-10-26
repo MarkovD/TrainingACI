@@ -5,8 +5,7 @@
 - [LAB03 - Application Profile (AP) and EndPoint Group (EPG)](#lab03---application-profile-(ap)-and-endpoint-group-(epg))
   - [Introduction](#introduction)
   - [Configuration Procedure](#configuration-procedure)
-    - [ACI Application Profile](#aci-application-profile)
-    - [ACI EndPoint Groups](#aci-endpoint-groups)
+    - [ACI Application Profile and EndPoint Groups](#aci-application-profile-and-endpoint-groups)
   - [Conclusions](#conclusions)
 
 ## Introduction
@@ -30,21 +29,31 @@ To perform the configuration steps reported in the following section, please acc
 
 ## Configuration Procedure
 
-### ACI Application Profile
+### ACI Application Profile and EndPoint Groups
 
 1. On the menu bar, click **Tenants**.
 2. Look for your tenant (**MMTENANT{*my_ID*}**) and double-click on it.
 3. Right-click on **Application Profiles** and select **Create Application Profile**.
 4. In the _Create Application Profile_ dialog box...
    1. Fill the **Name** field with **AP{*my_ID*}**
-   2. In the _EPGs_ section, click the "**+**" button.
-   3. ******************TODO FROM HERE**
+   2. In the _EPGs_ section, click the "**+**" button...
+      1. Fill the **Name** field with **EPG100**
+      2. From the drop-down menu **BD**, select the previously created Bridge Domain **BD100**
+      3. Click the **Update** button
+   3. In the _EPGs_ section, click again the "**+**" button...
+      1. Fill the **Name** field with **EPG200**
+      2. From the drop-down menu **BD**, select the previously created Bridge Domain **BD200**
+      3. Click the **Update** button 
    4. Click the **Submit** button.
+
+Expand and explore the subfolders of the newly created Application Profile. Clicking on the **Application Profiles>AP{*my_ID*}** you should be able to see a summary of the elements we created under this AP, i.e. the two EPGs:
+
+![ap_epgs](images/ap_epgs.png)
 
 ### ACI EndPoint Groups
 
 ## Conclusion
 
-In this lab you created a tenant on the Cisco APIC and configured part of its "_networking side_", i.e. a VRF and a Bridge Domain. In the [next lab](../LAB4/LAB04_instructions.md) you will configure the "_application profile_" of your tenant.
+In this lab you created an Application Profile under your Tenant on the Cisco APIC. Furthermore, two EPGs have been included into it. Notice that each of the EPGs has been associated with a Bridge Domain: in this way the "_application side_" and the "_networking side_" have been linked in a way. In the [next lab](../LAB4/LAB04_instructions.md) you will configure a **contract** between the two EPGs so that they can communicate across the the ACI fabric.
 
 > :heavy_check_mark: Congratulations! You have successfully completed this lab!
