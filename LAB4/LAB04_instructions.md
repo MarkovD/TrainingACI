@@ -62,7 +62,7 @@ Expand the **Contracts>Standard** and the **Contracts>Filter** subfolders, you s
 
 To apply this contract between the EPGs **EPG100** and **EPG200** follow the steps in the next subsection.
 
-### ACI Contract Application 
+### ACI Contract Application
 
 
 ## Conclusions
