@@ -11,12 +11,12 @@
 
 ## Introduction
 
-In this lab you will configure from scratch the following objects on the Cisco APIC:
+In this lab, you will configure from scratch the following objects on the Cisco APIC:
 - 1x Tenant
 - 1x VRF
 - 2x Bridge Domains
 
-As reference, the following image reports the relationships between these three objects as they are modelled in the ACI Management Information Tree (MIT):
+As reference, the following image reports the relationships between these objects as they are modelled in the ACI Management Information Tree (MIT):
 
 ![mit](images/mit.png)
 
