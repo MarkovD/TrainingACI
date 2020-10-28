@@ -41,12 +41,12 @@ To perform the configuration steps reported in the following section, please acc
    1. Fill the **Name** field with **permit-icmp**
    2. In the _Subjects_ section, click the "**+**" button
    3. In the _Create Contract Subject_ dialog box...
-      1. Fill the **Name** field with **sub-permit-icmp**
+      1. Fill the **Name** field with **permit-icmp_Subject**
       2. Check the box next to _Apply Both Directions_ (default config)
       3. In the _Filters_ section, click the "**+**" button
       4. From the drop-down menu **Name** click the "**+**" button in the top-right corner.
       5. In the _Create Filter_ dialog box...
-         1. Fill the **Name** field with **icmp-traffic**
+         1. Fill the **Name** field with **icmp_Filter**
          2. In the _Entries_ section, click the "**+**" button...
             1. Fill the **Name** field with **icmp**
             2. From the drop-down menu **EtherType** select **IPv4**
