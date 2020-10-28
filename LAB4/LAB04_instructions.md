@@ -64,9 +64,24 @@ To apply this contract between the EPGs **EPG100** and **EPG200** follow the ste
 
 ### ACI Contract Application
 
+1. In the navigation pane, expand **MMTENANT{*my_ID*}>Application Profiles>AP{*my_ID*}>Application EPGs>EPG100**.
+2. Right-click on **Contracts** and select **Add Provided Contract**.
+3. In the _Add Provided Contract_ dialog box...
+   1. From the drop-down menu **Contract**, select the previously created contract **permit-icmp**
+   2. Click the **Submit** button.
+4. Right-click on **Contracts** and select **Add Consumed Contract**.
+5. In the _Add Consumed Contract_ dialog box...
+   1. From the drop-down menu **Contract**, select the previously created contract **permit-icmp**
+   2. Click the **Submit** button.
+6. In the navigation pane, expand **MMTENANT{*my_ID*}>Application Profiles>AP{*my_ID*}>Application EPGs>EPG200**.
+7. Repeat the steps and substeps from 2. to 5.2.
+
+Expand **MMTENANT{*my_ID*}>Application Profiles** and click on **AP{*my_ID*}** to see a graphical representation of the contract application between **EPG100** and **EPG200**:
+
+![contract](images/contract.png)
 
 ## Conclusions
 
-In this lab you created a contract and applied it between two EPGs to allow the icmp traffic forwarding between them. In the [next lab](../LAB5/LAB05_instructions.md) you will complete the configuration of your tenant by creating an L3Out to enable the communications between the Application EPGs and the External EPGs.
+In this lab you created a contract and applied it between two EPGs to allow the ICMP traffic forwarding between them. In the [next lab](../LAB5/LAB05_instructions.md), you will complete the configuration of your tenant by creating an L3Out to enable the communications between the Application EPGs and the External EPGs.
 
 > :heavy_check_mark: Congratulations! You have successfully completed this lab!

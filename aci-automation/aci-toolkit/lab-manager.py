@@ -2,28 +2,6 @@
 import sys
 sys.dont_write_bytecode
 import acitoolkit.acitoolkit as aci
-import csv
-import os
-
-def import_csv(csvfilename):
-    """
-    Import file 'csvfilename' and return its content as a list.
-    
-    Arguments:
-        csvfilename {str} -- path of the file to be imported.
-    Returns:
-        [list] -- List with data read from 'csvfilename'.
-    """
-
-    data = []
-    
-    with open(csvfilename, "r", encoding="utf-8", errors="ignore") as scraped:
-        reader = csv.reader(scraped, delimiter=';')
-        for row in reader:
-            if row:  # avoid blank lines
-                data.append(row)
-    
-    return data
 
 def validate_partecipants(course_partecipants):
     
@@ -32,8 +10,8 @@ def validate_partecipants(course_partecipants):
 
 def validate_lab(lab_id):
 
-    if lab_id < 1 and lab_id > 8:
-        raise Exception(' !!! Could not restore to the selected lab! lab IDs are included between 1 and 8. Input value: {} '.format(lab_id))
+    if lab_id < 1 and lab_id > 4:
+        raise Exception(' !!! Could not restore to the selected lab! lab IDs are included between 1 and 4. Input value: {} '.format(lab_id))
 
 def get_bd(bd_name, tenant):
 
@@ -62,7 +40,7 @@ def main():
     #
     #################### DEFINE LAB LIST ####################################################################
     #
-    lab = [lab1, lab2, lab3, lab4, lab5, lab6, lab7, lab8]
+    lab = [lab1, lab2, lab3, lab4]
     #
     #################### GET CREDENTIALS & APIC LOGIN #######################################################
     #
@@ -89,7 +67,7 @@ def main():
     for l in range(lab_id):
         tenant_list = lab[l](course_partecipants, tenant_list)
     #
-    ## Push
+    ## Push to APIC
     #
     for cp in range(course_partecipants):
         tenant = tenant_list[cp]
@@ -170,7 +148,7 @@ def lab4(course_partecipants, tenant_list = []):
         ## apply from epg1 to epg2
         epg1.provide(contract)
         epg2.consume(contract)
-        
+
         ## apply from epg2 to epg1
         epg1.consume(contract)
         epg2.provide(contract)
@@ -178,18 +156,6 @@ def lab4(course_partecipants, tenant_list = []):
         new_tenant_list.append(tenant)
 
     return new_tenant_list
-
-def lab5(course_partecipants, tenant_list = []):
-    return tenant_list
-
-def lab6(course_partecipants, tenant_list = []):
-    return tenant_list
-
-def lab7(course_partecipants, tenant_list = []):
-    return tenant_list
-
-def lab8(course_partecipants, tenant_list = []):
-    return tenant_list
 
 
 if __name__ == "__main__":
