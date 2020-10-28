@@ -19,6 +19,8 @@ As reference, the following image reports the relationships between these object
 
 ![mit](images/mit.png)
 
+---
+
 To perform the configuration steps reported in the following section, please access to the Cisco APIC Sandbox @ [this link](https://sandboxapicdc.cisco.com/#) using the credential below:
 
 - User ID: admin

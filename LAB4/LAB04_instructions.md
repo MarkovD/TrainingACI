@@ -21,6 +21,8 @@ As reference, the following image reports the relationships between these object
 
 ![mit](images/mit.png)
 
+---
+
 To perform the configuration steps reported in the following section, please access to the Cisco APIC Sandbox @ [this link](https://sandboxapicdc.cisco.com/#) using the credential below:
 
 - User ID: admin
@@ -79,6 +81,8 @@ To apply this contract between the EPGs **EPG100** and **EPG200** follow the ste
 Expand **MMTENANT{*my_ID*}>Application Profiles** and click on **AP{*my_ID*}** to see a graphical representation of the contract application between **EPG100** and **EPG200**:
 
 ![contract](images/contract.png)
+
+---
 
 ## Conclusions
 
