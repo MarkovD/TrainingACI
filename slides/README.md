@@ -7,7 +7,9 @@ If you wish to use copyrighted material from this site for purposes of your own 
 
 # Course Material
 
-- []
+- [DAY 1 Slides]()
+- [DAY 2 Slides](./Cisco%20ACI%20Training%20Course%20-%20DAY2.pdf)
+- [DAY 3 Slides]()
 
 ---
 
