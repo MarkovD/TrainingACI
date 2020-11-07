@@ -129,7 +129,5 @@ dmypy.json
 .pyre/
 
 # Custom ignores
-aci-toolkit/acitoolkit/
-.vscode/
 .vs/
 aci-automation/aci-toolkit/acitoolkit
