@@ -1,0 +1,1 @@
+![modules_schedule](images/aci_automation.png)
