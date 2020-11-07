@@ -1,0 +1,153 @@
+---
+- name: "SETUP ACI TENANT"
+  hosts: apic
+  connection: local
+  gather_facts: false
+
+  vars:
+    tenant: "MMTENANT0"
+    vrf: "VRF-INSIDE"
+    bd1: "BD100"
+    bd2: "BD200"
+    ap: "AP0"
+    epg1: "EPG100"
+    epg2: "EPG200"
+    filter: "icmp_Filter"
+    filter_entry: "icmp"
+    contract: "permit-icmp"
+    subject: "permit-icmp_Subject"
+
+  tasks:
+    - name: Create Tenant "{{ tenant }}"
+      aci_tenant:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        description: "Created using ANSIBLE"
+
+    - name: Create VRF "{{ vrf }}"
+      aci_vrf:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        vrf: "{{ vrf }}"
+    
+    - name: Create Bridge Domains "{{ bd1 }}" and "{{ bd2 }}"
+      aci_bd:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+        state: present
+        tenant: "{{ tenant }}"
+        bd: "{{ item }}"
+        vrf: "{{ vrf }}"
+      loop:
+        - "{{ bd1 }}"
+        - "{{ bd2 }}"
+    
+    - name: Create Application Profile "{{ ap }}"
+      aci_ap:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        validate_certs: false
+        tenant: "{{ tenant }}"
+        ap: "{{ ap }}"
+
+    - name: Create EPGs "{{ epg1 }}" and "{{ epg2 }}"
+      aci_epg: 
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: "{{ ap }}"
+        epg: "{{ item.epg }}"
+        bd: "{{ item.bd }}"
+      loop:
+        - { epg: "{{ epg1 }}", bd: "{{ bd1 }}" }
+        - { epg: "{{ epg2 }}", bd: "{{ bd2 }}" }
+
+    - name: Create Tenant Filter "{{ filter }}"
+      aci_filter:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        filter: "{{ filter }}"
+   
+    - name: Create Filter Entry "{{ filter_entry }}" into "{{ filter }}"
+      aci_filter_entry:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        filter: "{{ filter }}"
+        entry: "{{ filter_entry }}"
+        ether_type: "ip"
+        ip_protocol: "icmp"
+
+    - name: Create Contract "{{ contract }}"
+      aci_contract:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        contract: "{{ contract }}"
+        scope: "context"
+    
+    - name: Create Subject "{{ subject }}" into "{{ contract }}"
+      aci_contract_subject:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        contract: "{{ contract }}"
+        subject: "{{ subject }}"
+    
+    - name: Bind Subject "{{ subject }}" and Filter "{{ filter }}"
+      aci_contract_subject_to_filter:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        validate_certs: False
+        tenant_name: "{{ tenant }}"
+        contract: "{{ contract }}"
+        subject: "{{ subject }}"
+        filter: "{{ filter }}"
+
+    - name: Bind EPGs "{{ epg1 }}" and "{{ epg2 }}" with Contract "{{ contract }}" (both directions)
+      aci_epg_to_contract:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: "{{ ap }}"
+        epg: "{{ item.epg }}"
+        contract: "{{ contract }}"
+        contract_type: "{{ item.contract_type }}"
+      loop:
+        - { epg: "{{ epg1 }}", contract_type: "provider" }
+        - { epg: "{{ epg2 }}", contract_type: "consumer" }
+        - { epg: "{{ epg2 }}", contract_type: "provider" }
+        - { epg: "{{ epg1 }}", contract_type: "consumer" }

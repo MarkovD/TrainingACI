@@ -132,3 +132,4 @@ dmypy.json
 aci-toolkit/acitoolkit/
 .vscode/
 .vs/
+aci-automation/aci-toolkit/acitoolkit
